@@ -1,7 +1,7 @@
 function setup() {
     createCanvas(windowWidth, windowHeight); // variable de javascript en général, ca défini que notre canvas prendra la taille de l'écran dans le quel on l'ouvre
     background(255);
-    noStroke();
+    // noStroke();
 }
 
 function draw() {
