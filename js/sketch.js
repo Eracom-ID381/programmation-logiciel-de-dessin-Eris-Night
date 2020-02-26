@@ -5,9 +5,10 @@ function setup() {
 }
 
 function draw() {
-    fill(0);
-    if (mouseIsPressed) {
-        circle(mouseX, mouseY, 50);
+    stroke(0);
+    strokeWeight(50);
+    if (mouseIsPressed === true) {
+        line(mouseX, mouseY, pmouseX, pmouseY);
     }
 
 }
