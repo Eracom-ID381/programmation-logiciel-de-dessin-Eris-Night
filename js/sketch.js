@@ -1,5 +1,5 @@
 let strokeVal = 0;
-let strokeValW = 50;
+let strokeValW = 10;
 
 function setup() {
     createCanvas(windowWidth, windowHeight); // variable de javascript en général, ca défini que notre canvas prendra la taille de l'écran dans le quel on l'ouvre
@@ -9,9 +9,10 @@ function setup() {
 
 function draw() {
     stroke(strokeVal); //c'est le contour des formes
-    strokeWeight(strokeValW);
+    strokeWeight(strokeValW); //taille du trait
     if (mouseIsPressed === true) {
         line(mouseX, mouseY, pmouseX, pmouseY);
+        cursor('crosshair');
     }
 
 }
@@ -21,7 +22,7 @@ function keyPressed() {
         strokeVal = 0;
     } else if (keyCode === BACKSPACE) {
         strokeVal = 255;
-    } //pour effacer, donc si c'est pas en blanc bah ca le met en blanc, si non en noir
+    } //pour effacer, donc si c'est pas en blanc bah ca le met en blanc, si non en noir -------------------------
     if (keyCode === 38) { //flèche du haut
         strokeValW = strokeValW + 5;
     }
