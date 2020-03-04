@@ -23,11 +23,19 @@ function keyPressed() {
         strokeVal = 255;
     } //pour effacer, donc si c'est pas en blanc bah ca le met en blanc, si non en noir
     if (keyCode === 38) { //flèche du haut
-        strokeValW = strokeValW + 1;
+        strokeValW = strokeValW + 5;
     }
     if (keyCode === 40) { //flèche du bas
-        strokeValW = strokeValW - 1;
-    } //Ses touches sont pour agrandir ou diminuer la taille du pinceau de dessin
+        strokeValW = strokeValW - 5;
+    } //Ses touches sont pour agrandir ou diminuer la taille du pinceau de dessin -----------------------
+
+    if (keyCode === 109) { //touche moins '-'
+        strokeVal = strokeVal + 5;
+    }
+    if (keyCode === 107) { //touche plus '+'
+        strokeVal = strokeVal - 5;
+    } //touches pour changer la nuance de gris -----------------------------------------
+
     if (keyCode === 82) { //R
         strokeVal = 'red';
     }
