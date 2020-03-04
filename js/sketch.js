@@ -21,10 +21,33 @@ function keyPressed() {
     } else if (keyCode === BACKSPACE) {
         strokeVal = 255;
     } //pour effacer, donc si c'est pas en blanc bah ca le met en blanc, si non en noir
-
-
-
-
+    if (keyCode === 82) {
+        strokeVal = 'red';
+    }
+    if (keyCode === 68) {
+        strokeVal = 'black';
+    }
+    if (keyCode === 66) {
+        strokeVal = 'blue';
+    }
+    if (keyCode === 71) {
+        strokeVal = 'green';
+    }
+    if (keyCode === 80) {
+        strokeVal = 'pink';
+    }
+    if (keyCode === 67) {
+        strokeVal = 'cyan';
+    }
+    if (keyCode === 89) {
+        strokeVal = 'yellow';
+    }
+    if (keyCode === 79) {
+        strokeVal = 'orange';
+    }
+    if (keyCode === 86) {
+        strokeVal = 'purple';
+    }
 }
 
 
