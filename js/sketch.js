@@ -4,7 +4,6 @@ let strokeValW = 10;
 function setup() {
     createCanvas(windowWidth, windowHeight); // variable de javascript en général, ca défini que notre canvas prendra la taille de l'écran dans le quel on l'ouvre
     background(255);
-    // noStroke();
 }
 
 function draw() {
@@ -12,9 +11,8 @@ function draw() {
     strokeWeight(strokeValW); //taille du trait
     if (mouseIsPressed === true) {
         line(mouseX, mouseY, pmouseX, pmouseY);
-        cursor('crosshair');
     }
-
+    cursor('crosshair'); //change le curseur
 }
 
 function keyPressed() {
