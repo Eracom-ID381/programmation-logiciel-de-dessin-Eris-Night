@@ -1,6 +1,8 @@
 let strokeVal = 0; //couleur du trait
 let strokeValW = 10; //taille du trait
 let distribution = new Array(200); //nmb de ligne qui va apparaître
+let lineTaille = 100; //taille des traits de l'outil rond
+let lineTaRond = 25; //Taille du cercle au centre de l'outil rond à traits
 
 function setup() {
     createCanvas(windowWidth, windowHeight); // variable de javascript en général, ca défini que notre canvas prendra la taille de l'écran dans le quel on l'ouvre
@@ -20,7 +22,7 @@ function draw() {
             stroke(strokeVal); //la couleur sera la même que celle qui est active
             strokeWeight(1); //épaisseur du trait
             let dist = abs(distribution[i]);
-            line(40, 40, 500, 40); //défini le point central d'ou partent les trait, si on agrandit les valeur il y aura un cercle vide au milieu
+            line(lineTaRond, lineTaRond, lineTaille, lineTaille); //défini le point central d'ou partent les trait, si on agrandit les valeur il y aura un cercle vide au milieu
         } //dans la troisième variable si je met “dist” ca permet de faire en sorte que les traits ai des tailles différente de manière aléatoire, voir au dessus
     } else if (mouseIsPressed === true) {
         line(mouseX, mouseY, pmouseX, pmouseY); //fait la ligne basique pour le dessin
@@ -47,6 +49,19 @@ function keyPressed() {
     if (keyCode === 107) { //touche plus '+'
         strokeVal = strokeVal - 5;
     } //touches pour changer la nuance de gris -----------------------------------------
+
+    if (keyCode === 39) { //flèche de droite
+        lineTaille = lineTaille + 5;
+    }
+    if (keyCode === 37) { //flèche de gauche
+        lineTaille = lineTaille - 5;
+    }
+    if (keyCode === 49) { //1
+        lineTaRond = lineTaRond + 5;
+    }
+    if (keyCode === 48) { //0
+        lineTaRond = lineTaRond - 5;
+    } // touches de paramètre de l'outil rond à traits -------------------------------------
 
     if (keyCode === 82) { //R
         strokeVal = 'red';
