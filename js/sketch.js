@@ -3,11 +3,12 @@ let strokeValW = 10; //taille du trait
 let distribution = new Array(200); //nmb de ligne qui va apparaître
 let lineTaille = 100; //taille des traits de l'outil rond
 let lineTaRond = 25; //Taille du cercle au centre de l'outil rond à traits
-let music;
 
 function preload() {
     normal = loadSound('source/Wii.mp3');
     hard = loadSound('source/WiiHardstyle.mp3');
+    vgr = loadSound('source/WiiVGR.mp3');
+    trap = loadSound('source/WiiTRAP.mp3');
 }
 
 function setup() {
@@ -22,6 +23,8 @@ function setup() {
     choix.position(10, 10);
     choix.option('Normal');
     choix.option('Hardstyle');
+    choix.option('VGR');
+    choix.option('Trap');
     choix.option('None');
     choix.selected('Normal');
     choix.changed(mySelectEvent);
@@ -56,17 +59,59 @@ function mySelectEvent() {
             if (hard.isPlaying()) {
                 hard.stop();
             }
+            if (trap.isPlaying()) { //pour chaque musique autre que celle qu'on veut jouer, on doit dire que si elle tourne, elle doit s'arrêter pour qu'on puisse dire à la fin qui jouera
+                trap.stop();
+            }
+            if (vgr.isPlaying()) {
+                vgr.stop(); // si on remplace stop par pause, la musique reprend là où elle en était avant qu'on change
+            }
             if (!normal.isPlaying()) { // le ! c'est pour indiquer l'inverse
                 normal.play();
             }
 
             break;
         case 'Hardstyle':
+            if (vgr.isPlaying()) {
+                vgr.stop();
+            }
+            if (trap.isPlaying()) {
+                trap.stop();
+            }
             if (normal.isPlaying()) {
-                normal.stop(); // si on remplace stop par pause, la musique reprend là où elle en était avant qu'on change
+                normal.stop();
             }
             if (!hard.isPlaying()) {
                 hard.play();
+            }
+
+            break;
+        case 'VGR':
+            if (trap.isPlaying()) {
+                trap.stop();
+            }
+            if (hard.isPlaying()) {
+                hard.stop();
+            }
+            if (normal.isPlaying()) {
+                normal.stop();
+            }
+            if (!vgr.isPlaying()) {
+                vgr.play();
+            }
+
+            break;
+        case 'Trap':
+            if (vgr.isPlaying()) {
+                vgr.stop();
+            }
+            if (hard.isPlaying()) {
+                hard.stop();
+            }
+            if (normal.isPlaying()) {
+                normal.stop();
+            }
+            if (!trap.isPlaying()) {
+                trap.play();
             }
 
             break;
@@ -76,6 +121,12 @@ function mySelectEvent() {
             }
             if (hard.isPlaying()) {
                 hard.stop();
+            }
+            if (vgr.isPlaying()) {
+                vgr.stop();
+            }
+            if (trap.isPlaying()) {
+                trap.stop();
             }
             break;
         default:
