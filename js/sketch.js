@@ -3,19 +3,35 @@ let strokeValW = 10; //taille du trait
 let distribution = new Array(200); //nmb de ligne qui va apparaître
 let lineTaille = 100; //taille des traits de l'outil rond
 let lineTaRond = 25; //Taille du cercle au centre de l'outil rond à traits
+let music;
+
+function preload() {
+    normal = loadSound('source/Wii.mp3');
+    hard = loadSound('source/WiiHardstyle.mp3');
+}
 
 function setup() {
+    normal.play();
     createCanvas(windowWidth, windowHeight); // variable de javascript en général, ca défini que notre canvas prendra la taille de l'écran dans le quel on l'ouvre
     background(255);
     for (let i = 0; i < distribution.length; i++) { //distribution c'est pour avoir de manière aléatoire des traits de taille différente
         distribution[i] = floor(randomGaussian(0, 1000));
     }
+    textAlign(CENTER);
+    choix = createSelect();
+    choix.position(10, 10);
+    choix.option('Normal');
+    choix.option('Hardstyle');
+    choix.option('None');
+    choix.selected('Normal');
+    choix.changed(mySelectEvent);
 }
 
 function draw() {
+
     stroke(strokeVal); //c'est le contour des formes
     strokeWeight(strokeValW); //taille du trait
-    if (keyCode === 221 && mouseIsPressed === true) {
+    if (keyCode === 221 && mouseIsPressed === true) { //“ ! ” c'est pour activer le cercle à trait
         translate(mouseX, mouseY, pmouseX, pmouseY);
         for (let i = 0; i < distribution.length; i++) {
             rotate(TWO_PI / distribution.length);
@@ -28,6 +44,47 @@ function draw() {
         line(mouseX, mouseY, pmouseX, pmouseY); //fait la ligne basique pour le dessin
     }
     cursor('crosshair'); //change le curseur
+}
+
+
+function mySelectEvent() {
+
+    let choice = choix.value();
+
+    switch (choice) {
+        case 'Normal':
+            if (hard.isPlaying()) {
+                hard.stop();
+            }
+            if (!normal.isPlaying()) { // le ! c'est pour indiquer l'inverse
+                normal.play();
+            }
+
+            break;
+        case 'Hardstyle':
+            if (normal.isPlaying()) {
+                normal.stop(); // si on remplace stop par pause, la musique reprend là où elle en était avant qu'on change
+            }
+            if (!hard.isPlaying()) {
+                hard.play();
+            }
+
+            break;
+        case 'None':
+            if (normal.isPlaying()) {
+                normal.stop();
+            }
+            if (hard.isPlaying()) {
+                hard.stop();
+            }
+            break;
+        default:
+            if (!normal.isPlaying()) {
+                normal.play();
+            }
+
+    }
+
 }
 
 function keyPressed() {
@@ -62,6 +119,10 @@ function keyPressed() {
     if (keyCode === 48) { //0
         lineTaRond = lineTaRond - 5;
     } // touches de paramètre de l'outil rond à traits -------------------------------------
+
+    if (keyCode === 88) { // X
+        clear();
+    } //------------------------------------------ supprime tout ce qu'il y a sur la page
 
     if (keyCode === 82) { //R
         strokeVal = 'red';
