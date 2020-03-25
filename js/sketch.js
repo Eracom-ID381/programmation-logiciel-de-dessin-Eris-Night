@@ -3,6 +3,7 @@ let strokeValW = 10; //taille du trait
 let distribution = new Array(200); //nmb de ligne qui va apparaître
 let lineTaille = 100; //taille des traits de l'outil rond
 let lineTaRond = 25; //Taille du cercle au centre de l'outil rond à traits
+let button;
 
 function preload() {
     normal = loadSound('source/Wii.mp3');
@@ -27,7 +28,21 @@ function setup() {
     choix.option('Trap');
     choix.option('None');
     choix.selected('Normal');
-    choix.changed(mySelectEvent);
+    choix.changed(mySelectEvent); //------------musique
+    button = createButton('Help');
+    button.position(25, 50);
+    button.mousePressed(open);
+    button.doubleClicked(close);
+}
+
+function open() {
+    let commande = 'Up arrow = size up stroke\nDown arrow = size down stroke\n! = mode sun\nRight arrow = size up mode sun\nLeft arrow = size down mode sun\n1 = size up circle mode sun\n0 = size down circle mode sun\nBackspace = ereas\nX = clear all\n+ = darker gray level\n- = lighter gray level\nR = red\nB = blue\nG = green\nD = black\nV = purple\nC = cyan\nO = orange\nY = yellow\nP = pink';
+    textSize(17);
+    fill(0);
+    noStroke();
+    textAlign(LEFT);
+    textLeading(20); // Set leading to 20
+    text(commande, 100, 100);
 }
 
 function draw() {
@@ -50,7 +65,7 @@ function draw() {
 }
 
 
-function mySelectEvent() {
+function mySelectEvent() { // configuration de la musique ---------------------------------------------------------
 
     let choice = choix.value();
 
