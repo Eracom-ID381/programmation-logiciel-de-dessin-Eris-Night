@@ -6,10 +6,10 @@ let lineTaRond = 25; //Taille du cercle au centre de l'outil rond à traits
 let button;
 
 function preload() {
-    normal = loadSound('../source/Wii.mp3');
-    hard = loadSound('../source/WiiHardstyle.mp3');
-    vgr = loadSound('../source/WiiVGR.mp3'); //
-    trap = loadSound('../source/WiiTRAP.mp3');
+    normal = loadSound('./source/Wii.mp3');
+    hard = loadSound('./source/WiiHardstyle.mp3');
+    vgr = loadSound('./source/WiiVGR.mp3'); //
+    trap = loadSound('./source/WiiTRAP.mp3');
 }
 
 function setup() {
